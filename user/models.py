@@ -7,6 +7,8 @@ from functools import reduce
 
 
 class CustomUser(AbstractUser):
+    f_name = models.CharField(max_length=30, default='deafault')
+    l_name = models.CharField(max_length=30, default='default')
     icon = models.ImageField(upload_to='avatar/', blank=True, null=True)
     status = models.CharField(max_length=10)
     tel_number = models.CharField(max_length=13)

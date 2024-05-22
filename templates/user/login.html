@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kirish Formasi</title>
+    <link rel="stylesheet" href="{% static 'user/login.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Assalomu alaykum!</h1>
+      <p>Qaytib keldingiz, sizni sog'indik!</p>
+      <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <label for="username">Email:</label>
+        <input required
+          type="text"
+          id="username"
+          name="email"
+          placeholder="Foydalanuvchi nomini kiriting"
+        />
+        <label for="password">Parol:</label>
+        <input required
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Parol"
+        />
+        <button type="submit">Kirish</button>
+      </form>
+      <p>A'zo emasmisiz? <a href="{% url 'register_user' %}">Ro'yxatdan o'ting</a></p>
+    </div>
+  </body>
+</html>

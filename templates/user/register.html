@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ro'yxatdan o'tish</title>
+    <link rel="stylesheet" href="{% static 'user/register.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Hisob yaratish</h1>
+      <p>Xush kelibsiz! Boshlash uchun ro'yxatdan o'ting.</p>
+      <form action="{% url 'register_user' %}" method="post">
+        {% csrf_token %}
+        <label for="firstname">Ism:</label>
+        <input required
+          type="text"
+          id="firstname"
+          name="f_name"
+          placeholder="Ismingizni kiriting"
+        />
+        <label for="lastname">Familiya:</label>
+        <input required
+          type="text"
+          id="lastname"
+          name="l_name"
+          placeholder="Familiyangizni kiriting"
+        />
+        <label for="email">Email:</label>
+        <input required
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Email manzilingizni kiriting"
+        />
+        <label for="password">Parol:</label>
+        <input required
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Parol yaratish"
+        />
+        <label for="confirm-password">Parolni tasdiqlash:</label>
+        <input required
+          type="password"
+          id="confirm-password"
+          name="confirm-password"
+          placeholder="Parolni tasdiqlash"
+        />
+        <h2>Rolingizni tanlang:</h2>
+        <input type="radio" id="client" name="status" value="mijoz" />
+        <label for="client">Mijoz</label>
+        <input type="radio" id="physicist" name="status" value="psixolog" />
+        <label for="physicist">Psixolog</label>
+
+        <br />
+        <button type="submit">Ro'yxatdan o'tish</button>
+        <p>Allaqachon hisobingiz bormi? <a href="{% url 'login' %}">Kirish</a></p>
+      </form>
+    </div>
+  </body>
+</html>
