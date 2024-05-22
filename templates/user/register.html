@@ -13,7 +13,15 @@
       <p>Xush kelibsiz! Boshlash uchun ro'yxatdan o'ting.</p>
       <form action="{% url 'register_user' %}" method="post">
         {% csrf_token %}
-        <label for="firstname">Ism:</label>
+        <div class="role_block">
+        <h2>Rolingizni tanlang:</h2>
+        <input type="radio" id="client" name="status" value="mijoz" />
+        <label for="client">Mijoz</label>
+        <input type="radio" id="physicist" name="status" value="psixolog" />
+        <label for="physicist" class="label_role">Psixolog</label>
+        </div>
+        <br />
+        <label for="firstname" class="name_label">Ism:</label>
         <input required
           type="text"
           id="firstname"
@@ -48,13 +56,7 @@
           name="confirm-password"
           placeholder="Parolni tasdiqlash"
         />
-        <h2>Rolingizni tanlang:</h2>
-        <input type="radio" id="client" name="status" value="mijoz" />
-        <label for="client">Mijoz</label>
-        <input type="radio" id="physicist" name="status" value="psixolog" />
-        <label for="physicist">Psixolog</label>
-
-        <br />
+ 
         <button type="submit">Ro'yxatdan o'tish</button>
         <p>Allaqachon hisobingiz bormi? <a href="{% url 'login' %}">Kirish</a></p>
       </form>

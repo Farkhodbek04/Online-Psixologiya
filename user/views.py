@@ -42,3 +42,5 @@ def login_view(request):
             return HttpResponse('Invalid credentials', status=401)
 
     return render(request, 'user/login.html')
+
+
