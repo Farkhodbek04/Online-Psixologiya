@@ -2,18 +2,7 @@
 {% load static %}
 {% block content %}
  
-     <!--  ************************* Page Title Starts Here ************************** -->
-               <div class="page-nav no-margin row">
-                   <div class="container">
-                       <div class="row">
-                           <h2>About Spinta Clinic</h2>
-                           <ul>
-                               <li> <a href="{% static '#'%}"><i class="fas fa-home"></i> Home</a></li>
-                               <li><i class="fas fa-angle-double-right"></i> About Us</li>
-                           </ul>
-                       </div>
-                   </div>
-               </div>
+    
        
          <!-- ######## Page  Title End ####### -->
          
@@ -21,156 +10,28 @@
   		<div class="container">
   			<div class="col-sm-12 blog-cont">
   				<div class="row no-margin">
+					{% for blog in blogs %}
   					<div class="col-sm-6 blog-smk">
-						<div class="blog-single">
-
-								<img src="{% static 'assets/images/blog/post_1.jpg'%}" alt="">
-
-							<div class="blog-single-det">
-								<span>Nov 12, 2018</span>
-								<h6>By Gods Grace</h6>
-								<p>Not the answer you're looking for? Browse other questions tagged  is simply dummy text of the printing and typesetting in</p>
-								<a href="{% static 'blog_single.html'%}">
-									<button class="btn btn-success btn-sm">More Detail</button>
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 blog-smk">
-						<div class="blog-single">
-
-								<img src="{% static 'assets/images/blog/post_2.jpg'%}" alt="">
-
-							<div class="blog-single-det">
-								<span>Nov 12, 2018</span>
-								<h6>By Gods Grace</h6>
-								<p>Not the answer you're looking for? Browse other questions tagged  is simply dummy text of the printing and typesetting in</p>
-								<a href="{% static 'blog_single.html'%}">
-									<button class="btn btn-success btn-sm">More Detail</button>
-								</a>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-sm-6 blog-smk">
-						<div class="blog-single">
-
-								<img src="{% static 'assets/images/blog/post_3.jpg'%}" alt="">
-
-							<div class="blog-single-det">
-								<span>Nov 12, 2018</span>
-								<h6>By Gods Grace</h6>
-								<p>Not the answer you're looking for? Browse other questions tagged  is simply dummy text of the printing and typesetting in</p>
-								<a href="{% static 'blog_single.html'%}">
-									<button class="btn btn-success btn-sm">More Detail</button>
-								</a>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-sm-6 blog-smk">
-						<div class="blog-single">
-
-								<img src="{% static 'assets/images/blog/post_4.jpg'%}" alt="">
-
-							<div class="blog-single-det">
-								<span>Nov 12, 2018</span>
-								<h6>By Gods Grace</h6>
-								<p>Not the answer you're looking for? Browse other questions tagged  is simply dummy text of the printing and typesetting in</p>
-								<button class="btn btn-success btn-sm">More Detail</button>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-sm-6 blog-smk">
 						<div class="blog-single">
 
 								<img src="{% static 'assets/images/blog/post_5.jpg'%}" alt="">
 
 							<div class="blog-single-det">
 								<span>Nov 12, 2018</span>
-								<h6>By Gods Grace</h6>
-								<p>Not the answer you're looking for? Browse other questions tagged  is simply dummy text of the printing and typesetting in</p>
+								<h6>{{ blog.title }}</h6>
+								<p>{{ blog.description }}</p>
 								<a href="{% static 'blog_single.html'%}">
-									<button class="btn btn-success btn-sm">More Detail</button>
+									<button class="btn btn-success btn-sm">Batafsil</button>
 								</a>
 							</div>
 						</div>
 					</div>
-					
-					<div class="col-sm-6 blog-smk">
-						<div class="blog-single">
-
-								<img src="{% static 'assets/images/blog/post_6.jpg'%}" alt="">
-
-							<div class="blog-single-det">
-								<span>Nov 12, 2018</span>
-								<h6>By Gods Grace</h6>
-								<p>Not the answer you're looking for? Browse other questions tagged  is simply dummy text of the printing and typesetting in</p>
-								<a href="{% static 'blog_single.html'%}">
-									<button class="btn btn-success btn-sm">More Detail</button>
-								</a>
-							</div>
-						</div>
-					</div>
+					{% endfor %}
   				</div>
   			</div>
   			
   		</div>
   	</section>  
-   	
-
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-sm-12">
-                    <h2>About Us</h2>
-                    <p>
-                        Smart Eye is a leading provider of information technology, consulting, and business process services. Our dedicated employees offer strategic insights, technological expertise and industry experience.
-                    </p>
-                    <p>We focus on technologies that promise to reduce costs, streamline processes and speed time-to-market, Backed by our strong quality processes and rich experience managing global... </p>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <h2>Useful Links</h2>
-                    <ul class="list-unstyled link-list">
-                        <li><a ui-sref="about" href="{% static '#/about'%}">About us</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="portfolio" href="{% static '#/portfolio'%}">Portfolio</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="products" href="{% static '#/products'%}">Latest jobs</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="gallery" href="{% static '#/gallery'%}">Gallery</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="contact" href="{% static '#/contact'%}">Contact us</a><i class="fa fa-angle-right"></i></li>
-                    </ul>
-                </div>
-                <div class="col-md-4 col-sm-12 map-img">
-                    <h2>Contact Us</h2>
-                    <address class="md-margin-bottom-40">
-                        BlueDart <br>
-                        Marthandam (K.K District) <br>
-                        Tamil Nadu, IND <br>
-                        Phone: +91 9159669599 <br>
-                        Email: <a href="{% static 'mailto:info@anybiz.com'%}" class="">info@bluedart.in</a><br>
-                        Web: <a href="{% static 'smart-eye.html'%}" class="">www.bluedart.in</a>
-                    </address>
-
-                </div>
-            </div>
-        </div>
-        
-
-    </footer>
-    <div class="copy">
-            <div class="container">
-                <a href="{% static 'https://www.smarteyeapps.com/'%}">2015 &copy; All Rights Reserved | Designed and Developed by Smarteyeapps</a>
-                
-                <span>
-                <a><i class="fab fa-github"></i></a>
-                <a><i class="fab fa-google-plus-g"></i></a>
-                <a><i class="fab fa-pinterest-p"></i></a>
-                <a><i class="fab fa-twitter"></i></a>
-                <a><i class="fab fa-facebook-f"></i></a>
-        </span>
-            </div>
-
-        </div>
 </body>
 {%endblock%}
 

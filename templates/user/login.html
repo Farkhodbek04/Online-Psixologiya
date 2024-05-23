@@ -10,13 +10,13 @@
   <body>
     <div class="container">
       <strong><p>KIRISH</p></strong>
-      <form action="{% url 'login' %}" method="post">
+      <form action="{% url 'login_view' %}" method="post">
         {% csrf_token %}
         <label for="username">Email:</label>
         <input required
           type="text"
           id="username"
-          name="email"
+          name="username"
           placeholder="Foydalanuvchi nomini kiriting"
         />
         <label for="password">Parol:</label>

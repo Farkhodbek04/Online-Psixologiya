@@ -14,32 +14,33 @@
       <form action="{% url 'register_user' %}" method="post">
         {% csrf_token %}
         <div class="role_block">
-        <h2>Rolingizni tanlang:</h2>
-        <input type="radio" id="client" name="status" value="mijoz" />
-        <label for="client">Mijoz</label>
-        <input type="radio" id="physicist" name="status" value="psixolog" />
-        <label for="physicist" class="label_role">Psixolog</label>
-        </div>
+          <h2>Rolingizni tanlang:</h2>
+          <div>
+              <input type="radio" id="client" name="status" value="mijoz" required />
+              <label for="client">Mijoz</label>
+              <input type="radio" id="physicist" name="status" value="psixolog" required />
+              <label for="physicist" class="label_role">Psixolog</label>
+          </div>
         <br />
         <label for="firstname" class="name_label">Ism:</label>
         <input required
           type="text"
           id="firstname"
-          name="f_name"
+          name="first_name"
           placeholder="Ismingizni kiriting"
         />
         <label for="lastname">Familiya:</label>
         <input required
           type="text"
           id="lastname"
-          name="l_name"
+          name="last_name"
           placeholder="Familiyangizni kiriting"
         />
         <label for="email">Email:</label>
         <input required
           type="email"
           id="email"
-          name="email"
+          name="username"
           placeholder="Email manzilingizni kiriting"
         />
         <label for="password">Parol:</label>
@@ -58,7 +59,7 @@
         />
  
         <button type="submit">Ro'yxatdan o'tish</button>
-        <p>Allaqachon hisobingiz bormi? <a href="{% url 'login' %}">Kirish</a></p>
+        <p>Allaqachon hisobingiz bormi? <a href="{% url 'login_view' %}">Kirish</a></p>
       </form>
     </div>
   </body>

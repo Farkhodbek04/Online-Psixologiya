@@ -1,79 +1,80 @@
 from django.db import models
-
-from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from functools import reduce
 
 
+class CoreModel(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        abstract = True
+
 class CustomUser(AbstractUser):
-    f_name = models.CharField(max_length=30, default='deafault')
-    l_name = models.CharField(max_length=30, default='default')
     icon = models.ImageField(upload_to='avatar/', blank=True, null=True)
     status = models.CharField(max_length=10)
     tel_number = models.CharField(max_length=13)
-    
 
-class Category(models.Model):
+class Category(CoreModel):
     name = models.CharField(max_length=255, unique=True)
 
     def __str__(self):
         return self.name
-    
 
-class Blog(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
-    name = models.CharField(max_length=255)
+class Blog(CoreModel):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)
     description = models.TextField()
-    price = models.DecimalField(decimal_places=2, max_digits=10)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
-    
+    blog_category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='blogs')
+
     @property
     def review(self):
-        reviews = BlogReview.objects.filter(Blog_id=self.id)
-        result = reduce(lambda result, x: result +x.mark, reviews, 0)
-        try: 
+        reviews = BlogReview.objects.filter(blog=self)
+        result = reduce(lambda result, x: result + x.mark, reviews, 0)
+        try:
             result = round(result / reviews.count())
-
-        except  ZeroDivisionError:
-            result=0
+        except ZeroDivisionError:
+            result = 0
         return result
-    
-    @property 
+
+    @property
     def is_active(self):
         return self.quantity > 0
-    
-    def __str__(self) -> str:
-        return self.name
-    
-    @property 
+
+    def __str__(self):
+        return self.title
+
+    @property
     def is_discount(self):
         if self.discount_price is None:
             return 0
         return self.discount_price > 0
 
-
-class BlogImage(models.Model):
+class BlogImage(CoreModel):
     image = models.ImageField(upload_to='blog_images/')
-    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='images')
 
-
-class BlogReview(models.Model):
+class BlogReview(CoreModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='reviews')
     mark = models.SmallIntegerField()
 
     def save(self, *args, **kwargs):
-        object = BlogReview.objects.filter(user=self.user, 
-        Blog=self.Blog)
+        object = BlogReview.objects.filter(user=self.user, blog=self.blog)
         if object.count():
             object.delete()
             super(BlogReview, self).save(*args, **kwargs)
         else:
             super(BlogReview, self).save(*args, **kwargs)
 
+class Service(CoreModel):
+    psycholog = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)
+    body = models.TextField()
+    baner_image = models.ImageField(upload_to='services_baner/')
 
-class ContactUs(models.Model):
+class ContactUs(CoreModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     message = models.TextField()

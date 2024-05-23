@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from .context_processors import user_info
+from user.models import *
 
 # Create your views here.
 
@@ -13,7 +15,10 @@ def services(request):
     return render(request, 'services.html')
 
 def blog(request):
-    return render(request, 'blog.html')
+    blogs = Blog.objects.all()
+    images = [i for i in blogs]
+
+    return render(request, 'blog.html', {'blogs':blogs})
 
 def gallery(request):
     return render(request, 'gallery.html')
